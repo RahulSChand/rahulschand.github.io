@@ -39,6 +39,14 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="assets/style-3.css" />
 
     <title>Rahul Chand</title>
@@ -49,7 +57,20 @@
       <div class="row pt-5 allstuff">
         <div class="col-md-3 pt-5">
           <div class="fixed-posi">
-            <p class="name">Rahul Chand</p>
+            <p class="name">
+                <span class="text-tooltip">Rahul
+                  <span class="tooltip-text">
+                    Rahul is the name Buddha gave to his son
+                  </span>
+                </span> 
+                <span class="text-tooltip">Chand
+                  <span class="tooltip-text">
+                    Chand means "moon" in Sanskrit
+                  </span>
+                </span>
+                (राहुल चंद)  
+            </p>
+              
             <img src="images/cat.jpg" class="profilepic pt-3 pb-2" />
 
             <div class="pt-5 menur">
@@ -115,14 +136,9 @@
           </div>
         </div>
         <div class="col-md-8 pt-5 about">
-          Hi 🤝 I am Rahul, I am currently a grad student at <span class="text-red-700">Stanford</span> 🔴🌲. Before this  
-          I worked as a Research Fellow at
-          <a
-            class="in-text"
-            href="https://www.microsoft.com/en-us/research/lab/microsoft-research-india/"
-            target="_blank"
-            >Microsoft Research</a
-          >
+          Hi 🤝 I am Rahul, I am currently a grad student at <span class="text-red-700">Stanford</span>🌲 and an intern at NVIDIA Research <i class="fas fa-microchip" style="color: #76B900;"></i> working on post-training for Nemotron LLMs. Before this  
+          I worked as a Research Fellow at Microsoft Research
+          <i class="fab fa-microsoft" style="color: #00BCF2;"></i>
           with
           <a
             class="in-text"
@@ -143,27 +159,26 @@
             href="http://manikvarma.org/pubs/bengio19.pdf"
             target="_blank"
             >Extreme Classification</a
-          >. My current interests are in RL+LLMs and AI Alignment. Currently, I am working at the <a class="in-text" href="https://scalingintelligence.stanford.edu" target="_blank">Scaling Intelligence Lab</a> at Stanford on post-training of LLMs and at the <a class="in-text" href="https://iliad.stanford.edu" target="_blank">ILIAD</a> group on RL application to robotics. In the future, I look forward to getting replaced by AGI and work as a Wallace design protein farmer.
+          >. My current interests are in RL+LLMs and Robotics. Currently, I am working at the <a class="in-text" href="https://scalingintelligence.stanford.edu" target="_blank">Scaling Intelligence Lab</a> at Stanford on LLMs and at the <a class="in-text" href="https://iliad.stanford.edu" target="_blank">ILIAD</a> group on robotics. 
+          <br />
+          <br />
+          In the <span class="hover-preview">future<img src="images/future_meme.jpg" alt="future_meme" class="preview-image"></span> I look forward to getting replaced by AGI and work as a <span class="hover-preview">Wallace design protein farmer<img src="images/blade_runner.webp" alt="wallace_design" class="preview-image-landscape"></span>.
           <br />
           <br />
         
-          In my previous life, I did my undergrad thesis at
-          <a class="in-text" href="https://val.cds.iisc.ac.in/" target="_blank"
-            >VAL, Indian Institue of Science</a
-          > on Capsule Networks & before that spent 3 months at 
-          <a class="in-text" href="https://www.iirs.gov.in" target="_blank">
-            IIRS (ISRO)
-          </a>
-           as a research intern.
-          I graduated with a B.Tech in Computer Science from
-          <a
-            class="in-text"
-            href="https://www.bits-pilani.ac.in/"
-            target="_blank"
-            >BITS Pilani</a
-          >. For more details, check my
+          In my previous life, I completed my undergrad in CS from <a
+          class="in-text"
+          href="https://www.bits-pilani.ac.in/"
+          target="_blank"
+          >BITS Pilani</a
+        > and worked at <a class="in-text" href="https://val.cds.iisc.ac.in/" target="_blank"
+          >VAL (IISc)</a
+          > on Capsule Networks for my undergrad thesis.
+          <!-- I graduated with a B.Tech in Computer Science from -->
+          For more details, check my
           <a class="in-text" href="assets/Resume_Upload_Rahul.pdf" target="_blank">CV</a
-          >. Here is a list of papers I am currently reading : <a href="paper_read/">[List]</a>
+          >
+          <!-- Here is a list of papers I am currently reading : <a href="paper_read/">[List]</a> -->
 
           <p class="header pt-5">Publications</p>
           <div class="py-2">
@@ -317,6 +332,28 @@
       crossorigin="anonymous"
     ></script>
     <script src="assets/style-3.js"></script>
+    <script>
+        const profileImg = document.querySelector('.profilepic');
+        const originalSrc = 'images/cat.jpg';
+        const filteredImages = [
+            'images/me_anime_1.png',
+            'images/me_anime_2.png', 
+            'images/me_anime_3.png',
+            'images/me_anime_4.png'
+        ];
+        
+        let currentImageIndex = 0;
+        
+        profileImg.addEventListener('mouseenter', () => {
+            // Pick a random filtered image
+            const randomIndex = Math.floor(Math.random() * filteredImages.length);
+            profileImg.src = filteredImages[randomIndex];
+        });
+        
+        profileImg.addEventListener('mouseleave', () => {
+            profileImg.src = originalSrc;
+        });
+        </script>
   </body>
   <style></style>
 </html>
