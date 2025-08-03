@@ -14,6 +14,9 @@
 
 .noter {
     font-size: 9pt;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #777;
+    font-style: italic;
 }
 
 .tagsep {
@@ -28,14 +31,51 @@
     font-weight: 300;
 }
 
-.conf {
-    font-weight: bold;
-    display: inline-block;
-    
-}
+/* This rule is now defined below with !important */
 
 .paper {
     border-left: 1px solid #ddd;
+}
+
+/* Paper title links - keep same as body text */
+.paper > a {
+    color: #0066cc !important;
+}
+
+/* All author names in papers (the line after title) */
+.paper br + text, .paper br + * {
+    font-size: 0.9em !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    color: #080808 !important;
+}
+
+/* Your author name specifically */
+
+/* Section headers like Publications, Open Source */
+.header {
+    font-size: 1.15em !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-weight: 600 !important;
+    color: #333 !important;
+    margin-top: 2rem !important; /* Less spacing above */
+    margin-bottom: 0.5rem !important; /* Less spacing below */
+    padding-top: 0 !important; /* Override Bootstrap pt-5, pt-2 */
+}
+
+/* Conference name spans */
+.conf {
+    font-size: 0.85em !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    color: #666 !important;
+    font-weight: 400 !important;
+}
+
+/* Conference links */
+.paper a[href*="iclr"], .paper a[href*="corl"] {
+    font-size: 0.85em !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    color: #0066cc !important;
+    font-weight: 400 !important;
 }
 
 .my-hover-class {
@@ -270,4 +310,8 @@
 
 .text-tooltip-light .tooltip-text::after {
     border-top-color: #ddd;
+}
+
+a.papertitle {
+    color: #0066cc !important;
 }
