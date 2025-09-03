@@ -1,0 +1,317 @@
+.instilogo {
+    height: 50px;
+    filter: grayscale(20%);
+}
+
+/* a:hover {
+    font-weight: 400;
+    text-decoration: none;
+    transition-duration: 0.3s;
+    transition-timing-function: linear;
+    color: #444;
+} */
+
+
+.noter {
+    font-size: 9pt;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #777;
+    font-style: italic;
+}
+
+.tagsep {
+    padding: 4px;
+}
+
+.tag {
+    padding-right: 2px;
+}
+
+.confshort {
+    font-weight: 300;
+}
+
+/* This rule is now defined below with !important */
+
+.paper {
+    border-left: 1px solid #ddd;
+}
+
+/* Paper title links - keep same as body text */
+.paper > a {
+    color: #0066cc !important;
+}
+
+/* All author names in papers (the line after title) */
+.paper br + text, .paper br + * {
+    font-size: 0.9em !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    color: #080808 !important;
+}
+
+/* Your author name specifically */
+
+/* Section headers like Publications, Open Source */
+.header {
+    font-size: 1.15em !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-weight: 600 !important;
+    color: #333 !important;
+    margin-top: 2rem !important; /* Less spacing above */
+    margin-bottom: 0.5rem !important; /* Less spacing below */
+    padding-top: 0 !important; /* Override Bootstrap pt-5, pt-2 */
+}
+
+/* Conference name spans */
+.conf {
+    font-size: 0.85em !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    color: #666 !important;
+    font-weight: 400 !important;
+}
+
+/* Conference links */
+.paper a[href*="iclr"], .paper a[href*="corl"] {
+    font-size: 0.85em !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    color: #0066cc !important;
+    font-weight: 400 !important;
+}
+
+.my-hover-class {
+    font-size: large;
+}
+
+.my-hover-class:hover {
+    font-size: larger;
+}
+
+.profilepic {
+    width: 200px;
+    border-radius: 40%;
+    filter: grayscale(30%);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    
+    
+}
+
+.profilepic:hover {
+    transform: scale(1.05);
+    outline-color: rgba(74, 144, 226, 0.6);
+    filter: grayscale(10%);
+}
+
+@media (min-width: 768px) {
+    .fixed-posi {
+        /* width: 50%;
+            margin-left: 50%;
+            min-height:100%; */
+        position: fixed;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .allstuff {
+        padding-top: 0px !important;
+    }
+
+    .allstuffp {
+        padding-top: 0px !important;
+    }
+
+    .profilepic {
+        width: 90px;
+        border-radius: 40%;
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+        filter: grayscale(30%);
+    }
+
+    .menur {
+        padding-top: 18px !important;
+    }
+
+}
+
+/* .thisauthor {
+          color: #111;
+          text-decoration: underline;
+    } */
+
+.inline-icon {
+    height: 1.1em; /* Slightly bigger than text height */
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 3px; /* Small spacing around icon */
+    /* Make images crisp */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    /* Optional: add subtle effects */
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}
+
+.inline-icon:hover {
+    opacity: 1;
+}
+
+.text-red-700 {
+    color: #8C1515; /* Official Stanford Cardinal Red */
+    font-size: 1.05em; /* Makes font 5% bigger than normal */
+}
+
+.nvidia-text {
+    color: #76B900;
+    font-size: 1.03em;
+    font-weight: 500;
+    transition: color 0.2s ease; /* Smooth hover effect */
+}
+
+.nvidia-text:hover {
+    color: #5a8a00; /* Slightly darker on hover */
+}
+
+.microsoft-text {
+    color: #00BCF2;
+    font-size: 1.03em;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.microsoft-text:hover {
+    color: #0099cc; /* Slightly darker on hover */
+}
+
+.hover-preview {
+    position: relative;
+    color: #5aaa6d;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.hover-preview:hover {
+    color: #0056b3;
+}
+
+.hover-preview .preview-image {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    margin-bottom: 10px;
+    border: 3px solid white;
+}
+
+.hover-preview:hover .preview-image {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+.hover-preview .preview-image-landscape {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    margin-bottom: 10px;
+    border: 3px solid white;
+}
+
+.hover-preview:hover .preview-image-landscape {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* Text Tooltip Styles */
+.text-tooltip {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 3px dotted #93dab2;
+    text-decoration: none;
+    margin-right: 4px;
+    padding-bottom: 1px;
+}
+
+.text-tooltip:hover {
+    color: #438ede;
+    border-bottom-color: #0056b3;
+}
+
+.text-tooltip .tooltip-text {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    background: #8badd0;
+    color: rgb(19, 19, 19);
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: left;
+    border: 2px solid #34495e;
+}
+
+/* Arrow pointing down */
+.text-tooltip .tooltip-text::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: #34495e;
+}
+
+.text-tooltip:hover .tooltip-text {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* Alternative light theme tooltip */
+.text-tooltip-light .tooltip-text {
+    background: white;
+    color: #333;
+    border: 2px solid #ddd;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.text-tooltip-light .tooltip-text::after {
+    border-top-color: #ddd;
+}
+
+a.papertitle {
+    color: #0066cc !important;
+}
