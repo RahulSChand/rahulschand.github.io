@@ -37,19 +37,32 @@
     border-left: 1px solid #ddd;
 }
 
-/* Paper title links - keep same as body text */
-.paper > a {
+/* Paper title links - all should be the same */
+.paper > a,
+.paper a:first-child {
     color: #0066cc !important;
+    font-size: 1em !important;
+    font-weight: normal !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
 }
 
-/* All author names in papers (the line after title) */
-.paper br + text, .paper br + * {
+.paper > a:hover,
+.paper a:first-child:hover {
+    text-decoration: underline !important;
+    font-weight: 600 !important;
+    color: #0056b3 !important;
+}
+
+/* All author names - make them consistent */
+.paper .authors,
+.paper span.authors {
     font-size: 0.9em !important;
     font-family: Georgia, "Times New Roman", serif !important;
     color: #080808 !important;
+    font-weight: normal !important;
+    font-style: normal !important;
 }
-
-/* Your author name specifically */
 
 /* Section headers like Publications, Open Source */
 .header {
@@ -57,9 +70,9 @@
     font-family: Georgia, "Times New Roman", serif !important;
     font-weight: 600 !important;
     color: #333 !important;
-    margin-top: 2rem !important; /* Less spacing above */
-    margin-bottom: 0.5rem !important; /* Less spacing below */
-    padding-top: 0 !important; /* Override Bootstrap pt-5, pt-2 */
+    margin-top: 2rem !important;
+    margin-bottom: 0.5rem !important;
+    padding-top: 0 !important;
 }
 
 /* Conference name spans */
@@ -70,20 +83,42 @@
     font-weight: 400 !important;
 }
 
-/* Conference links */
-.paper a[href*="iclr"], .paper a[href*="corl"] {
+/* Conference links - only style links that are NOT the first child */
+.conf-link {
     font-size: 0.85em !important;
-    font-family: Georgia, "Times New Roman", serif !important;
     color: #0066cc !important;
     font-weight: 400 !important;
+    text-decoration: none !important;
 }
 
+/* Sidebar navigation links (Resume, Email, etc) */
 .my-hover-class {
     font-size: large;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
 }
 
 .my-hover-class:hover {
     font-size: larger;
+    transform: translateX(5px);
+    text-decoration: underline;
+}
+
+/* In-text links in the intro paragraph */
+.in-text {
+    color: #0066cc;
+    text-decoration: none;
+    border-bottom: 1px dotted #0066cc;
+    transition: all 0.2s ease;
+    padding-bottom: 1px;
+}
+
+.in-text:hover {
+    color: #003d7a;
+    border-bottom: 2px solid #003d7a;
+    background-color: rgba(0, 102, 204, 0.05);
+    padding-bottom: 0px;
 }
 
 .profilepic {
