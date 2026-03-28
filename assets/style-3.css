@@ -1,352 +1,529 @@
-.instilogo {
-    height: 50px;
-    filter: grayscale(20%);
+/* ===== Base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* a:hover {
-    font-weight: 400;
-    text-decoration: none;
-    transition-duration: 0.3s;
-    transition-timing-function: linear;
-    color: #444;
-} */
-
-
-.noter {
-    font-size: 9pt;
-    font-family: Georgia, "Times New Roman", serif;
-    color: #777;
-    font-style: italic;
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.tagsep {
-    padding: 4px;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #1a1a1a;
+  background-color: #ffffff;
 }
 
-.tag {
-    padding-right: 2px;
+a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.15s ease;
 }
 
-.confshort {
-    font-weight: 300;
+a:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
 }
 
-/* This rule is now defined below with !important */
-
-.paper {
-    border-left: 1px solid #ddd;
+/* ===== Layout ===== */
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
 }
 
-/* Paper title links - all should be the same */
-.paper > a,
-.paper a:first-child {
-    color: #0066cc !important;
-    font-size: 1em !important;
-    font-weight: normal !important;
-    text-decoration: none !important;
-    transition: all 0.2s ease;
+/* ===== Header ===== */
+.header-section {
+  margin-bottom: 48px;
 }
 
-.paper > a:hover,
-.paper a:first-child:hover {
-    text-decoration: underline !important;
-    font-weight: 600 !important;
-    color: #0056b3 !important;
-}
-
-/* All author names - make them consistent */
-.paper .authors,
-.paper span.authors {
-    font-size: 0.9em !important;
-    font-family: Georgia, "Times New Roman", serif !important;
-    color: #080808 !important;
-    font-weight: normal !important;
-    font-style: normal !important;
-}
-
-/* Section headers like Publications, Open Source */
-.header {
-    font-size: 1.15em !important;
-    font-family: Georgia, "Times New Roman", serif !important;
-    font-weight: 600 !important;
-    color: #333 !important;
-    margin-top: 2rem !important;
-    margin-bottom: 0.5rem !important;
-    padding-top: 0 !important;
-}
-
-/* Conference name spans */
-.conf {
-    font-size: 0.85em !important;
-    font-family: Georgia, "Times New Roman", serif !important;
-    color: #666 !important;
-    font-weight: 400 !important;
-}
-
-/* Conference links - only style links that are NOT the first child */
-.conf-link {
-    font-size: 0.85em !important;
-    color: #0066cc !important;
-    font-weight: 400 !important;
-    text-decoration: none !important;
-}
-
-/* Sidebar navigation links (Resume, Email, etc) */
-.my-hover-class {
-    font-size: large;
-    transition: all 0.3s ease;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.my-hover-class:hover {
-    font-size: larger;
-    transform: translateX(5px);
-    text-decoration: underline;
-}
-
-/* In-text links in the intro paragraph */
-.in-text {
-    color: #0066cc;
-    text-decoration: none;
-    border-bottom: 1px dotted #0066cc;
-    transition: all 0.2s ease;
-    padding-bottom: 1px;
-}
-
-.in-text:hover {
-    color: #003d7a;
-    border-bottom: 2px solid #003d7a;
-    background-color: rgba(0, 102, 204, 0.05);
-    padding-bottom: 0px;
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 32px;
 }
 
 .profilepic {
-    width: 200px;
-    border-radius: 40%;
-    filter: grayscale(30%);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    
-    
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  filter: grayscale(20%);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 3px solid #e5e7eb;
 }
 
 .profilepic:hover {
-    transform: scale(1.05);
-    outline-color: rgba(74, 144, 226, 0.6);
-    filter: grayscale(10%);
+  filter: grayscale(0%);
+  transform: scale(1.04);
+  border-color: #c7d2fe;
 }
 
-@media (min-width: 768px) {
-    .fixed-posi {
-        /* width: 50%;
-            margin-left: 50%;
-            min-height:100%; */
-        position: fixed;
-    }
+.header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-@media only screen and (max-width: 900px) {
-    .allstuff {
-        padding-top: 0px !important;
-    }
-
-    .allstuffp {
-        padding-top: 0px !important;
-    }
-
-    .profilepic {
-        width: 90px;
-        border-radius: 40%;
-        padding-top: 0px !important;
-        padding-bottom: 0px !important;
-        filter: grayscale(30%);
-    }
-
-    .menur {
-        padding-top: 18px !important;
-    }
-
+.name {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
-/* .thisauthor {
-          color: #111;
-          text-decoration: underline;
-    } */
-
-.inline-icon {
-    height: 1.1em; /* Slightly bigger than text height */
-    width: auto;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 3px; /* Small spacing around icon */
-    /* Make images crisp */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    /* Optional: add subtle effects */
-    opacity: 0.9;
-    transition: opacity 0.2s ease;
+.name-hindi {
+  font-size: 1.15rem;
+  color: #4b5563;
+  margin: 2px 0 0 0;
+  font-weight: 500;
 }
 
-.inline-icon:hover {
-    opacity: 1;
+.tagline {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin: 6px 0 0 0;
+  font-weight: 400;
 }
 
-.text-red-700 {
-    color: #8C1515; /* Official Stanford Cardinal Red */
-    font-size: 1.05em; /* Makes font 5% bigger than normal */
+.social-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
 }
 
-.nvidia-text {
-    color: #76B900;
-    font-size: 1.03em;
-    font-weight: 500;
-    transition: color 0.2s ease; /* Smooth hover effect */
+.social-links a {
+  position: relative;
+  color: #6b7280;
+  font-size: 1.15rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
 }
 
-.nvidia-text:hover {
-    color: #5a8a00; /* Slightly darker on hover */
+.social-links a:hover {
+  color: #2563eb;
+  transform: translateY(-1px);
+  text-decoration: none;
 }
 
-.microsoft-text {
-    color: #00BCF2;
-    font-size: 1.03em;
-    font-weight: 500;
-    transition: color 0.2s ease;
+.social-links a::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #1f2937;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.15s ease;
+  pointer-events: none;
 }
 
-.microsoft-text:hover {
-    color: #0099cc; /* Slightly darker on hover */
+.social-links a:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
+/* ===== Bio ===== */
+.bio {
+  margin-bottom: 48px;
+}
+
+.bio p {
+  margin: 0 0 16px 0;
+  font-size: 0.95rem;
+  color: #374151;
+  line-height: 1.75;
+}
+
+.bio p:last-child {
+  margin-bottom: 0;
+}
+
+.bio a {
+  color: #2563eb;
+  text-decoration: none;
+  border-bottom: 1px solid #bfdbfe;
+  transition: all 0.15s ease;
+}
+
+.bio a:hover {
+  border-bottom-color: #2563eb;
+  text-decoration: none;
+}
+
+.stanford {
+  color: #8C1515;
+  font-weight: 600;
+}
+
+/* ===== Job banner ===== */
+.job-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  margin-bottom: 32px;
+}
+
+.job-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.job-serious {
+  color: #6b7280;
+  font-weight: 400;
+}
+
+/* ===== TA list ===== */
+.ta-list {
+  margin: 0 0 16px 0;
+  padding-left: 20px;
+  font-size: 0.95rem;
+  color: #374151;
+  line-height: 1.75;
+}
+
+.ta-list li {
+  margin-bottom: 2px;
+}
+
+.ta-list strong {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* ===== Sections ===== */
+.section {
+  margin-bottom: 48px;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 20px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e5e7eb;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+}
+
+/* ===== Publication entries ===== */
+.pub-entry {
+  padding: 16px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.pub-entry:last-child {
+  border-bottom: none;
+}
+
+.pub-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.pub-title:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.pub-authors {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 4px 0 0 0;
+  line-height: 1.5;
+}
+
+.equal-contrib {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.pub-venue {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin: 4px 0 0 0;
+}
+
+.pub-venue a {
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.pub-badge {
+  display: inline-block;
+  background: #dbeafe;
+  color: #1e40af;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 1px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+/* ===== Open Source entries ===== */
+.oss-entry {
+  padding: 14px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.oss-entry:last-child {
+  border-bottom: none;
+}
+
+.oss-info {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.oss-name {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+}
+
+.oss-name:hover {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.oss-stars {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.oss-desc {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 4px 0 0 0;
+  line-height: 1.6;
+}
+
+/* ===== Affiliations ===== */
+.affiliations {
+  padding-top: 8px;
+}
+
+.affil-row {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+
+.affil-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.affil-item img {
+  height: 48px;
+  max-width: 120px;
+  width: auto;
+  object-fit: contain;
+  transition: all 0.2s ease;
+}
+
+.affil-item:hover img {
+  transform: scale(1.06);
+}
+
+.affil-item span {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* ===== Hover preview images (flair) ===== */
 .hover-preview {
-    position: relative;
-    color: #5aaa6d;
-    font-weight: 400;
-    cursor: pointer;
-    text-decoration: underline;
-    transition: color 0.2s ease;
+  position: relative;
+  color: #059669;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 1px dashed #6ee7b7;
+  transition: color 0.2s ease;
 }
 
 .hover-preview:hover {
-    color: #0056b3;
+  color: #047857;
+  border-bottom-color: #047857;
 }
 
 .hover-preview .preview-image {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    margin-bottom: 10px;
-    border: 3px solid white;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease;
+  z-index: 1000;
+  margin-bottom: 12px;
+  border: 2px solid #e5e7eb;
 }
 
 .hover-preview:hover .preview-image {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(-5px);
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-4px);
 }
 
 .hover-preview .preview-image-landscape {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    margin-bottom: 10px;
-    border: 3px solid white;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease;
+  z-index: 1000;
+  margin-bottom: 12px;
+  border: 2px solid #e5e7eb;
 }
 
 .hover-preview:hover .preview-image-landscape {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(-5px);
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-4px);
 }
 
-/* Text Tooltip Styles */
+/* ===== Name tooltips (flair) ===== */
 .text-tooltip {
-    position: relative;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border-bottom: 3px dotted #93dab2;
-    text-decoration: none;
-    margin-right: 4px;
-    padding-bottom: 1px;
+  position: relative;
+  cursor: pointer;
+  border-bottom: 2px dotted #a5b4fc;
+  transition: all 0.2s ease;
+  margin-right: 4px;
 }
 
 .text-tooltip:hover {
-    color: #438ede;
-    border-bottom-color: #0056b3;
+  color: #2563eb;
+  border-bottom-color: #2563eb;
 }
 
 .text-tooltip .tooltip-text {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    background: #8badd0;
-    color: rgb(19, 19, 19);
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    margin-bottom: 10px;
-    font-size: 14px;
-    line-height: 1.4;
-    text-align: left;
-    border: 2px solid #34495e;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  background: #ffffff;
+  color: #374151;
+  padding: 12px 16px;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease;
+  z-index: 1000;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  text-align: left;
+  border: 1px solid #e5e7eb;
+  font-weight: 400;
 }
 
-/* Arrow pointing down */
 .text-tooltip .tooltip-text::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 8px solid transparent;
-    border-top-color: #34495e;
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: #e5e7eb;
 }
 
 .text-tooltip:hover .tooltip-text {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(-5px);
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-4px);
 }
 
-/* Alternative light theme tooltip */
-.text-tooltip-light .tooltip-text {
-    background: white;
-    color: #333;
-    border: 2px solid #ddd;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
+/* ===== Mobile ===== */
+@media (max-width: 640px) {
+  .container {
+    padding: 32px 18px 60px;
+  }
 
-.text-tooltip-light .tooltip-text::after {
-    border-top-color: #ddd;
-}
+  .profile-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
 
-a.papertitle {
-    color: #0066cc !important;
+  .profilepic {
+    width: 100px;
+    height: 100px;
+  }
+
+  .name {
+    font-size: 1.5rem;
+  }
+
+  .hover-preview .preview-image-landscape {
+    width: 300px;
+    height: 150px;
+  }
 }
