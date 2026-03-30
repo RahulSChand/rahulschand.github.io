@@ -418,7 +418,8 @@ a:hover {
   border: 2px solid #e5e7eb;
 }
 
-.hover-preview:hover .preview-image {
+.hover-preview:hover .preview-image,
+.hover-preview.active .preview-image {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(-4px);
@@ -442,7 +443,8 @@ a:hover {
   border: 2px solid #e5e7eb;
 }
 
-.hover-preview:hover .preview-image-landscape {
+.hover-preview:hover .preview-image-landscape,
+.hover-preview.active .preview-image-landscape {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(-4px);
