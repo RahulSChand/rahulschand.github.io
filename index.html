@@ -12,7 +12,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/style-3.css?v=7" />
 
@@ -27,7 +27,7 @@
           <img src="images/cat.jpg" class="profilepic" alt="Rahul Chand" />
           <div class="header-info">
             <h1 class="name">
-              <span class="text-tooltip">Rahul<span class="tooltip-text">Rahul is the name Buddha gave to his son</span></span>
+              <span class="text-tooltip">Rahul<span class="tooltip-text">Rahul is the name Buddha gave to his son (Also means Silver)</span></span>
               <span class="text-tooltip">Chand<span class="tooltip-text">Chand means "moon" in Sanskrit</span></span>
             </h1>
             <p class="name-hindi">राहुल चंद</p>
@@ -47,13 +47,13 @@
       <!-- Job status -->
       <div class="job-banner">
         <span class="job-dot"></span>
-        Looking to escape permanent underclass & increase shareholder value <span class="job-serious">(full-time roles)</span>
+        <span class="typewriter" id="typewriter"></span><span class="cursor-blink">_</span>
       </div>
 
       <!-- Bio -->
       <section class="bio">
         <p>
-          Hi, I am Rahul. I am currently a MSCS student at <span class="stanford">Stanford</span> 🌲 . Previously I was an intern at the <a href="https://research.nvidia.com/labs/gear/" target="_blank">GEAR Lab</a> at NVIDIA Research <i class="fas fa-microchip" style="color: #76B900;"></i> working on GR00T N1.6 and offline RL. <i class="fa-solid fa-robot" style="color: #4682B4;"></i>. Before that, I was an intern at NVIDIA's <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2" target="_blank">post-training Nemotron LLM team</a> <i class="fa-solid fa-language" style="color: #6A5ACD;"></i> working on latent reasoning, and contributed to <a href="https://github.com/NVIDIA-NeMo/RL" target="_blank">Nemo-RL</a> (async RL) and <a href="https://github.com/NVIDIA-NeMo/gym" target="_blank">Nemo-Gym</a>.
+          Hi, I am Rahul. I am currently a MSCS student at <span class="stanford">Stanford</span> 🌲 . Previously I was an intern at the <a href="https://research.nvidia.com/labs/gear/" target="_blank">GEAR Lab</a> at NVIDIA Research <i class="fas fa-microchip" style="color: #76B900;"></i> working on <a href="https://research.nvidia.com/labs/gear/gr00t-n1_6/" target="_blank">GR00T N1.6</a> and offline RL. <i class="fa-solid fa-robot" style="color: #4682B4;"></i>. Before that, I was an intern at NVIDIA's <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2" target="_blank">post-training Nemotron LLM team</a> <i class="fa-solid fa-language" style="color: #6A5ACD;"></i> working on latent reasoning, and contributed to <a href="https://github.com/NVIDIA-NeMo/RL" target="_blank">Nemo-RL</a> (async RL) and <a href="https://github.com/NVIDIA-NeMo/gym" target="_blank">Nemo-Gym</a>.
         </p>
         <p>
           I was also part of the <a href="https://iliad.stanford.edu" target="_blank">ILIAD</a> <i class="fa-solid fa-landmark" style="color: #DAA520;"></i> group (Dorsa Sadigh's lab). Prior to joining <span class="stanford">Stanford</span> 🌲 I worked as a Research Fellow at Microsoft Research <i class="fab fa-microsoft" style="color: #00BCF2;"></i> on Transformer Compression &amp; <a href="http://manikvarma.org/pubs/bengio19.pdf" target="_blank">Extreme Classification</a>. My current interests are in RL+LLM and Robotics (You can have super intelligence in an API for 20$/month but it would still be fundamentally limited unless you can give it a physical body).
@@ -62,7 +62,7 @@
           At Stanford I have also been a TA for:
         </p>
         <ul class="ta-list">
-          <li><a href="https://cs153.stanford.edu" target="_blank"><strong>CS 153</strong></a> — Infra at Scale (Anjey Midha A16z, Michael Abbot)</li>
+          <li><a href="https://cs153.stanford.edu" target="_blank"><strong>CS 153</strong></a> — Infra at Scale (Anjey Midha a16z, Michael Abbot)</li>
           <li><a href="https://web.stanford.edu/class/cs234/" target="_blank"><strong>CS 234</strong></a> — Reinforcement Learning (Emma Brunskill)</li>
           <li><a href="https://cs224r.stanford.edu" target="_blank"><strong>CS 224R</strong></a> — Deep RL (Chelsea Finn)</li>
         </ul>
@@ -227,6 +227,20 @@
           document.querySelectorAll('.hover-preview.active').forEach(el => el.classList.remove('active'));
         }
       });
+
+      (function() {
+        const words = ['Looking', 'to', 'escape', 'permanent', 'underclass', '(full-time', 'roles)'];
+        const el = document.getElementById('typewriter');
+        let i = 0;
+        function typeWord() {
+          if (i < words.length) {
+            el.textContent += (i > 0 ? ' ' : '') + words[i];
+            i++;
+            setTimeout(typeWord, 180);
+          }
+        }
+        setTimeout(typeWord, 600);
+      })();
     </script>
   </body>
 </html>
