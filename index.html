@@ -71,8 +71,8 @@
         </p>
         <ul class="ta-list">
           <li><a href="https://cs153.stanford.edu" target="_blank"><strong>CS 153</strong></a> — Infra at Scale (Anjey Midha, Michael Abbot)</li>
-          <li><a href="https://web.stanford.edu/class/cs234/" target="_blank"><strong>CS 234</strong></a> — Reinforcement Learning (Prof. Emma Brunskill)</li>
-          <li><a href="https://cs224r.stanford.edu" target="_blank"><strong>CS 224R</strong></a> — Deep RL (Prof. Chelsea Finn)</li>
+          <li><a href="https://web.stanford.edu/class/cs234/" target="_blank" data-fallback="https://web.archive.org/web/20260411074854/http://web.stanford.edu/class/cs234/"><strong>CS 234</strong></a> — Reinforcement Learning (Prof. Emma Brunskill)</li>
+          <li><a href="https://cs224r.stanford.edu" target="_blank" data-fallback="https://web.archive.org/web/20260822052456/https://cs224r.stanford.edu/"><strong>CS 224R</strong></a> — Deep RL (Prof. Chelsea Finn)</li>
         </ul>
         <p>
           In the <span class="hover-preview">future<img src="images/future_meme.jpg" alt="future meme" class="preview-image"></span> I look forward to getting replaced by AGI and work as a <span class="hover-preview">Wallace design protein farmer<img src="images/blade_runner.webp" alt="wallace design" class="preview-image-landscape"></span>.
@@ -234,6 +234,37 @@
         if (!e.target.closest('.hover-preview')) {
           document.querySelectorAll('.hover-preview.active').forEach(el => el.classList.remove('active'));
         }
+      });
+
+      async function resolveLinkUrl(primary, fallback) {
+        try {
+          const response = await fetch(primary, { method: 'HEAD', cache: 'no-store' });
+          if (response.ok) return primary;
+          if (response.status >= 400) return fallback;
+          return primary;
+        } catch {
+          try {
+            await fetch(primary, { method: 'HEAD', mode: 'no-cors', cache: 'no-store' });
+            return primary;
+          } catch {
+            return fallback;
+          }
+        }
+      }
+
+      document.querySelectorAll('a[data-fallback]').forEach(link => {
+        const primary = link.href;
+        const fallback = link.dataset.fallback;
+
+        resolveLinkUrl(primary, fallback).then(url => {
+          if (url === fallback) link.href = fallback;
+        });
+
+        link.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const url = await resolveLinkUrl(primary, fallback);
+          window.open(url, '_blank', 'noopener,noreferrer');
+        });
       });
 
     </script>
