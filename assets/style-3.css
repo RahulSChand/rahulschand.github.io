@@ -149,6 +149,11 @@ a:hover {
   margin-bottom: 0;
 }
 
+.bio-footer-link {
+  padding-top: 4px;
+  border-top: 1px dotted #ccc;
+}
+
 .bio a {
   color: #0000EE;
   text-decoration: underline;
@@ -515,6 +520,114 @@ a:hover {
   visibility: visible;
 }
 
+/* ===== Movie rankings page ===== */
+.movies-container {
+  min-height: 100vh;
+}
+
+.page-header {
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.back-link,
+.page-footer a {
+  font-size: 0.78rem;
+  color: #555;
+}
+
+.page-title {
+  margin: 28px 0 6px;
+  font-size: 1.55rem;
+  line-height: 1.3;
+  color: #000;
+}
+
+.page-intro {
+  margin: 0;
+  color: #555;
+  font-size: 0.84rem;
+}
+
+.movie-entry {
+  display: grid;
+  grid-template-columns: 48px 104px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 12px;
+  margin: 0 -12px;
+  border-bottom: 1px dotted #ddd;
+  border-left: 2px solid transparent;
+  transition: background 0.1s, border-left-color 0.1s;
+}
+
+.movie-entry:hover {
+  background: #f5f5f0;
+  border-left-color: #0000EE;
+}
+
+.movie-rank {
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.movie-poster {
+  width: 104px;
+  height: 142px;
+  object-fit: cover;
+  border: 1px solid #999;
+  filter: grayscale(20%);
+}
+
+.movie-badge {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 3px 6px;
+  border: 1px solid #8c1515;
+  color: #8c1515;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.movie-info h2 {
+  margin: 0;
+  color: #0000EE;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.movie-meta {
+  margin: 3px 0 0;
+  color: #666;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.movie-stars {
+  display: none;
+  margin: 3px 0 0;
+  color: #8c1515;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  line-height: 1.55;
+}
+
+.movie-director {
+  color: #444;
+  font-weight: 600;
+}
+
+.page-footer {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid #ccc;
+}
+
 /* ===== Mobile ===== */
 @media (max-width: 640px) {
   .container {
@@ -543,5 +656,19 @@ a:hover {
 
   .social-links {
     gap: 4px;
+  }
+
+  .movie-entry {
+    grid-template-columns: 32px 76px 1fr;
+    gap: 9px;
+  }
+
+  .movie-poster {
+    width: 76px;
+    height: 108px;
+  }
+
+  .movie-badge {
+    font-size: 0.58rem;
   }
 }
