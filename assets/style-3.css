@@ -96,6 +96,11 @@ a:hover {
   font-weight: 400;
 }
 
+.tagline-stanford {
+  color: #a66363;
+  font-weight: 500;
+}
+
 .social-links {
   display: flex;
   gap: 6px;
@@ -599,6 +604,15 @@ a:hover {
   font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.5;
+}
+
+.movie-info h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.movie-info h2 a:hover {
+  text-decoration: underline;
 }
 
 .movie-meta {
