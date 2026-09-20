@@ -28,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets/style-3.css?v=14" />
+    <link rel="stylesheet" href="assets/style-3.css?v=15" />
 
     <title>Rahul Chand</title>
   </head>
@@ -60,7 +60,7 @@
 
       <!-- Favourite movie scenes (diffusion reveal) -->
       <a class="diffusion-scene" href="movies.html" aria-label="Favourite movie scenes">
-        <canvas class="diffusion-canvas" width="700" height="300"></canvas>
+        <canvas class="diffusion-canvas" width="700" height="380"></canvas>
         <span class="diffusion-caption"></span>
       </a>
 
@@ -218,24 +218,6 @@
 
     <script data-goatcounter="https://rahulschand.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
     <script>
-      const profileImg = document.querySelector('.profilepic');
-      const originalSrc = 'images/cat.jpg';
-      const filteredImages = [
-        'images/me_anime_1.png',
-        'images/me_anime_2.png',
-        'images/me_anime_3.png',
-        'images/me_anime_4.png'
-      ];
-
-      profileImg.addEventListener('mouseenter', () => {
-        const randomIndex = Math.floor(Math.random() * filteredImages.length);
-        profileImg.src = filteredImages[randomIndex];
-      });
-
-      profileImg.addEventListener('mouseleave', () => {
-        profileImg.src = originalSrc;
-      });
-
       document.querySelectorAll('.hover-preview').forEach(el => {
         el.addEventListener('click', (e) => {
           e.preventDefault();
@@ -295,17 +277,21 @@
         const H = canvas.height;
 
         // Add your favourite movie scenes here. Drop the image files in
-        // images/scenes/ and add a { src, title } line for each.
+        // images/movie_scenes/ and add a { src, title } line for each.
         const scenes = [
-          { src: 'images/scenes/blade_runner.webp', title: 'Blade Runner' },
+          { src: 'images/movie_scenes/stalker_1.jpg', title: 'Stalker' },
+          { src: 'images/movie_scenes/taxi_driver.avif', title: 'Taxi Driver' },
+          { src: 'images/movie_scenes/birdman.jpg', title: 'Birdman' },
+          { src: 'images/movie_scenes/stalker_2.jpg', title: 'Stalker' },
         ];
 
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         // Noise is computed at low resolution (cheap) then upscaled; the final
         // clean frame is drawn at full resolution (crisp, not grainy).
-        const NW = 224;
-        const NH = 96;
+        // Keep this aspect ratio matched to the canvas (700x380).
+        const NW = 210;
+        const NH = 114;
         const buf = document.createElement('canvas');
         buf.width = NW;
         buf.height = NH;
@@ -365,6 +351,17 @@
           bctx.putImageData(frame, 0, 0);
           ctx.imageSmoothingEnabled = true;
           ctx.drawImage(buf, 0, 0, W, H);
+
+          // Crossfade the crisp full-res image in over the last stretch so the
+          // low-res buffer resolves into sharpness instead of popping at the end.
+          if (p > 0.75) {
+            let a = (p - 0.75) / 0.25; // 0 -> 1
+            a = a * a * (3 - 2 * a);   // smoothstep
+            ctx.globalAlpha = a;
+            const [dx, dy, dw, dh] = coverRect(target.img.width, target.img.height, W, H);
+            ctx.drawImage(target.img, dx, dy, dw, dh);
+            ctx.globalAlpha = 1;
+          }
         }
 
         function animateScene(target) {
