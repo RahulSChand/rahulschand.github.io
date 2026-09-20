@@ -290,6 +290,11 @@ a:hover {
   line-height: 1.5;
 }
 
+.pub-authors .me {
+  font-weight: 700;
+  color: #111;
+}
+
 .equal-contrib {
   font-style: italic;
   font-size: 0.75rem;
