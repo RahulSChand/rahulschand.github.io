@@ -109,17 +109,20 @@ a:hover {
   display: block;
   width: 100%;
   margin: 0 0 16px;
-  border: 2px solid #999;
-  border-radius: 4px;
+  /* Subtle "cinema screen": bolder dark bezel, soft ambient shadow,
+     faint inner edge so the image sits recessed like a screen. */
+  border: 3px solid #1a1a1a;
+  border-radius: 3px;
   overflow: hidden;
   line-height: 0;
   text-decoration: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22), inset 0 0 0 1px rgba(0, 0, 0, 0.55);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .diffusion-scene:hover {
-  border-color: #0000EE;
-  box-shadow: 3px 3px 0 #000;
+  border-color: #000;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.32), inset 0 0 0 1px rgba(0, 0, 0, 0.55);
 }
 
 .diffusion-canvas {
