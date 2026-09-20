@@ -39,16 +39,46 @@ a:hover {
   padding: 48px 20px 64px;
 }
 
+/* ===== Entrance animations ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container > * {
+  animation: fadeInUp 0.5s ease both;
+}
+
+.header-section { animation-delay: 0.05s; }
+.bio { animation-delay: 0.15s; }
+.job-banner { animation-delay: 0.2s; }
+.section:nth-of-type(1) { animation-delay: 0.25s; }
+.section:nth-of-type(2) { animation-delay: 0.35s; }
+.section:nth-of-type(3) { animation-delay: 0.45s; }
+.section:nth-of-type(4) { animation-delay: 0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .container > * {
+    animation: none;
+  }
+}
+
 /* ===== Header ===== */
 .header-section {
-  margin-bottom: 36px;
-  padding-bottom: 24px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
   border-bottom: 1px solid #ccc;
 }
 
 .profile-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 24px;
 }
 
@@ -72,6 +102,50 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 0;
+}
+
+/* ===== Diffusion scene (landscape banner above bio) ===== */
+.diffusion-scene {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 0 16px;
+  border: 2px solid #999;
+  border-radius: 4px;
+  overflow: hidden;
+  line-height: 0;
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.diffusion-scene:hover {
+  border-color: #0000EE;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.diffusion-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #000;
+}
+
+.diffusion-caption {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  font-size: 0.7rem;
+  color: #fff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 0 8px rgba(0, 0, 0, 0.6);
+  line-height: 1.3;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.diffusion-caption.show {
+  opacity: 1;
 }
 
 .name {
@@ -132,6 +206,14 @@ a:hover {
   content: attr(data-tooltip);
   font-size: 0.7rem;
   font-family: 'IBM Plex Mono', monospace;
+}
+
+.social-links a.icon-only::after {
+  content: none;
+}
+
+.social-links a.icon-only i {
+  margin-right: 0;
 }
 
 /* ===== Bio ===== */
@@ -308,8 +390,14 @@ a:hover {
 }
 
 .pub-venue a {
-  color: #0000EE;
+  color: inherit;
   font-weight: 500;
+  text-decoration: none;
+}
+
+.pub-venue a:hover {
+  color: #333;
+  text-decoration: underline;
 }
 
 .pub-badge {

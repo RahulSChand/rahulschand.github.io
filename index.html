@@ -28,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets/style-3.css?v=9" />
+    <link rel="stylesheet" href="assets/style-3.css?v=14" />
 
     <title>Rahul Chand</title>
   </head>
@@ -45,19 +45,24 @@
               <span class="text-tooltip">Chand<span class="tooltip-text">Chand means "moon" in Sanskrit</span></span>
             </h1>
             <p class="name-hindi">राहुल चंद</p>
-            <p class="tagline">MS CS · <span class="tagline-stanford">Stanford University</span></p>
             <nav class="social-links">
               <a href="assets/RahulC_Stanford_GRAD_RESUME.pdf" target="_blank" data-tooltip="Resume"><i class="fas fa-file-alt"></i></a>
-              <a href="mailto:rahulsc@cs.stanford.edu" data-tooltip="Email"><i class="fas fa-envelope"></i></a>
-              <a href="https://github.com/rahulschand" target="_blank" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+              <a class="icon-only" href="mailto:rahulsc@cs.stanford.edu" data-tooltip="Email"><i class="fas fa-envelope"></i></a>
+              <a class="icon-only" href="https://github.com/rahulschand" target="_blank" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
               <a href="https://scholar.google.com/citations?user=MwVowfAAAAAJ&hl=en" target="_blank" data-tooltip="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-              <a href="https://www.linkedin.com/in/rahulschand/" target="_blank" data-tooltip="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a class="icon-only" href="https://www.linkedin.com/in/rahulschand/" target="_blank" data-tooltip="LinkedIn"><i class="fab fa-linkedin"></i></a>
               <a href="https://www.lesswrong.com/users/rahul-chand" target="_blank" data-tooltip="LessWrong"><i class="fas fa-book-open"></i></a>
               <a href="movies.html" data-tooltip="Movies"><i class="fas fa-film"></i></a>
             </nav>
           </div>
         </div>
       </header>
+
+      <!-- Favourite movie scenes (diffusion reveal) -->
+      <a class="diffusion-scene" href="movies.html" aria-label="Favourite movie scenes">
+        <canvas class="diffusion-canvas" width="700" height="300"></canvas>
+        <span class="diffusion-caption"></span>
+      </a>
 
       <!-- Bio -->
       <section class="bio">
@@ -276,6 +281,135 @@
           window.open(url, '_blank', 'noopener,noreferrer');
         });
       });
+
+      // ===== Diffusion scene reveal (landscape banner) =====
+      (function () {
+        const scene = document.querySelector('.diffusion-scene');
+        if (!scene) return;
+        const canvas = scene.querySelector('.diffusion-canvas');
+        const caption = scene.querySelector('.diffusion-caption');
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        const W = canvas.width;   // full-res target for a crisp final image
+        const H = canvas.height;
+
+        // Add your favourite movie scenes here. Drop the image files in
+        // images/scenes/ and add a { src, title } line for each.
+        const scenes = [
+          { src: 'images/scenes/blade_runner.webp', title: 'Blade Runner' },
+        ];
+
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Noise is computed at low resolution (cheap) then upscaled; the final
+        // clean frame is drawn at full resolution (crisp, not grainy).
+        const NW = 224;
+        const NH = 96;
+        const buf = document.createElement('canvas');
+        buf.width = NW;
+        buf.height = NH;
+        const bctx = buf.getContext('2d', { willReadFrequently: true });
+        const frame = bctx.createImageData(NW, NH);
+
+        // Cheap approx-Gaussian noise in [-1, 1].
+        function randn() {
+          return (Math.random() + Math.random() + Math.random() + Math.random() - 2) * 0.5;
+        }
+
+        function coverRect(iw, ih, w, h) {
+          const scale = Math.max(w / iw, h / ih);
+          const dw = iw * scale;
+          const dh = ih * scale;
+          return [(w - dw) / 2, (h - dh) / 2, dw, dh];
+        }
+
+        function loadScene(s) {
+          return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => {
+              try {
+                const [dx, dy, dw, dh] = coverRect(img.width, img.height, NW, NH);
+                bctx.clearRect(0, 0, NW, NH);
+                bctx.drawImage(img, dx, dy, dw, dh);
+                const data = bctx.getImageData(0, 0, NW, NH);
+                resolve(Object.assign({}, s, { data: data, img: img }));
+              } catch (e) {
+                resolve(null);
+              }
+            };
+            img.onerror = () => resolve(null);
+            img.src = s.src;
+          });
+        }
+
+        function renderClean(target) {
+          const [dx, dy, dw, dh] = coverRect(target.img.width, target.img.height, W, H);
+          ctx.imageSmoothingEnabled = true;
+          ctx.clearRect(0, 0, W, H);
+          ctx.drawImage(target.img, dx, dy, dw, dh);
+        }
+
+        function renderStep(target, p) {
+          const t = target.data.data;
+          const f = frame.data;
+          const noiseAmp = 1 - p;
+          for (let i = 0; i < f.length; i += 4) {
+            for (let c = 0; c < 3; c++) {
+              const base = t[i + c] * p + Math.random() * 255 * (1 - p);
+              let v = base + randn() * 90 * noiseAmp;
+              f[i + c] = v < 0 ? 0 : v > 255 ? 255 : v;
+            }
+            f[i + 3] = 255;
+          }
+          bctx.putImageData(frame, 0, 0);
+          ctx.imageSmoothingEnabled = true;
+          ctx.drawImage(buf, 0, 0, W, H);
+        }
+
+        function animateScene(target) {
+          return new Promise((resolve) => {
+            const revealMs = 2200;
+            const holdMs = 2200;
+            const start = performance.now();
+            caption.classList.remove('show');
+            function tick(now) {
+              let p = (now - start) / revealMs;
+              if (p >= 1) {
+                renderClean(target);
+                caption.textContent = target.title;
+                caption.classList.add('show');
+                setTimeout(resolve, holdMs);
+                return;
+              }
+              const ep = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+              renderStep(target, ep);
+              requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+          });
+        }
+
+        (async function run() {
+          const loaded = (await Promise.all(scenes.map(loadScene))).filter(Boolean);
+          if (!loaded.length) {
+            scene.style.display = 'none';
+            return;
+          }
+          if (prefersReduced) {
+            renderClean(loaded[0]);
+            caption.textContent = loaded[0].title;
+            caption.classList.add('show');
+            return;
+          }
+          let i = 0;
+          // eslint-disable-next-line no-constant-condition
+          while (true) {
+            await animateScene(loaded[i]);
+            i = (i + 1) % loaded.length;
+          }
+        })();
+      })();
 
     </script>
   </body>
