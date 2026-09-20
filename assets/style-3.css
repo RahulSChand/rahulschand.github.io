@@ -681,18 +681,6 @@ a:hover {
   filter: grayscale(20%);
 }
 
-.movie-badge {
-  display: inline-block;
-  margin-bottom: 8px;
-  padding: 3px 6px;
-  border: 1px solid #8c1515;
-  color: #8c1515;
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
 .movie-info h2 {
   margin: 0;
   color: #0000EE;
@@ -775,9 +763,5 @@ a:hover {
   .movie-poster {
     width: 76px;
     height: 108px;
-  }
-
-  .movie-badge {
-    font-size: 0.58rem;
   }
 }
