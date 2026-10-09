@@ -88,7 +88,7 @@
         </p>
       </section>
 
-      <blockquote class="closing-quote">
+      <blockquote class="closing-quote" hidden>
         <span class="quote-text">It was Gorky, Lenin or maybe Mayakovsky who said about the Russian revolution that the situation forced them to choose the one chance in a thousand. Because hope became infinitely greater if you took that chance than if you didn't take it.</span>
         <cite class="closing-quote-source">— My Night at Maud's (1969)</cite>
       </blockquote>
@@ -311,9 +311,12 @@
         const bctx = buf.getContext('2d', { willReadFrequently: true });
         const frame = bctx.createImageData(NW, NH);
 
-        // Cheap approx-Gaussian noise in [-1, 1].
-        function randn() {
-          return (Math.random() + Math.random() + Math.random() + Math.random() - 2) * 0.5;
+        // Number of blur levels, coarsest first. Each level halves resolution.
+        const LEVELS = 6;
+
+        // Cheap approx-Gaussian noise with unit standard deviation.
+        function gauss() {
+          return (Math.random() + Math.random() + Math.random() + Math.random() - 2) * 1.732;
         }
 
         function coverRect(iw, ih, w, h) {
@@ -328,11 +331,32 @@
             const img = new Image();
             img.onload = () => {
               try {
+                const base = document.createElement('canvas');
+                base.width = NW;
+                base.height = NH;
                 const [dx, dy, dw, dh] = coverRect(img.width, img.height, NW, NH);
-                bctx.clearRect(0, 0, NW, NH);
-                bctx.drawImage(img, dx, dy, dw, dh);
-                const data = bctx.getImageData(0, 0, NW, NH);
-                resolve(Object.assign({}, s, { data: data, img: img }));
+                base.getContext('2d').drawImage(img, dx, dy, dw, dh);
+
+                // Progressively halve to get blurrier versions, then scale each
+                // back up to NW x NH so they can be blended pixel by pixel.
+                const smalls = [base];
+                for (let k = 1; k < LEVELS; k++) {
+                  const prev = smalls[smalls.length - 1];
+                  const c = document.createElement('canvas');
+                  c.width = Math.max(1, Math.round(prev.width / 2));
+                  c.height = Math.max(1, Math.round(prev.height / 2));
+                  const cctx = c.getContext('2d');
+                  cctx.imageSmoothingEnabled = true;
+                  cctx.drawImage(prev, 0, 0, c.width, c.height);
+                  smalls.push(c);
+                }
+                const levels = smalls.reverse().map((c) => {
+                  bctx.imageSmoothingEnabled = true;
+                  bctx.clearRect(0, 0, NW, NH);
+                  bctx.drawImage(c, 0, 0, NW, NH);
+                  return bctx.getImageData(0, 0, NW, NH).data;
+                });
+                resolve(Object.assign({}, s, { levels: levels, img: img }));
               } catch (e) {
                 resolve(null);
               }
@@ -349,15 +373,26 @@
           ctx.drawImage(target.img, dx, dy, dw, dh);
         }
 
+        // Coarse-to-fine, like a diffusion sampler: the blurry layout and colours
+        // show up early under heavy noise, then edges and fine detail sharpen in
+        // while the noise falls away.
         function renderStep(target, p) {
-          const t = target.data.data;
+          const levels = target.levels;
+          const n = levels.length - 1;
+          const pos = Math.min(n, p * n * 1.15);
+          const lo = Math.floor(pos);
+          const hi = Math.min(n, lo + 1);
+          const mix = pos - lo;
+          const A = levels[lo];
+          const B = levels[hi];
+          const signal = Math.sqrt(p);
+          const sigma = Math.pow(1 - p, 0.8) * 85;
           const f = frame.data;
-          const noiseAmp = 1 - p;
           for (let i = 0; i < f.length; i += 4) {
             for (let c = 0; c < 3; c++) {
-              const base = t[i + c] * p + Math.random() * 255 * (1 - p);
-              let v = base + randn() * 90 * noiseAmp;
-              f[i + c] = v < 0 ? 0 : v > 255 ? 255 : v;
+              const k = i + c;
+              const s = A[k] + (B[k] - A[k]) * mix;
+              f[k] = 128 + signal * (s - 128) + gauss() * sigma;
             }
             f[i + 3] = 255;
           }
@@ -367,8 +402,8 @@
 
           // Crossfade the crisp full-res image in over the last stretch so the
           // low-res buffer resolves into sharpness instead of popping at the end.
-          if (p > 0.75) {
-            let a = (p - 0.75) / 0.25; // 0 -> 1
+          if (p > 0.85) {
+            let a = (p - 0.85) / 0.15; // 0 -> 1
             a = a * a * (3 - 2 * a);   // smoothstep
             ctx.globalAlpha = a;
             const [dx, dy, dw, dh] = coverRect(target.img.width, target.img.height, W, H);
@@ -379,7 +414,7 @@
 
         function animateScene(target) {
           return new Promise((resolve) => {
-            const revealMs = 2200;
+            const revealMs = 3200;
             const holdMs = 2200;
             const start = performance.now();
             caption.classList.remove('show');
@@ -392,8 +427,7 @@
                 setTimeout(resolve, holdMs);
                 return;
               }
-              const ep = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-              renderStep(target, ep);
+              renderStep(target, p);
               requestAnimationFrame(tick);
             }
             requestAnimationFrame(tick);
