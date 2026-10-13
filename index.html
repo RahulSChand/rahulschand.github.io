@@ -28,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=EB+Garamond:ital@1&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets/style-3.css?v=21" />
+    <link rel="stylesheet" href="assets/style-3.css?v=23" />
 
     <title>Rahul Chand</title>
   </head>
@@ -59,10 +59,13 @@
       </header>
 
       <!-- Favourite movie scenes (diffusion reveal) -->
-      <a class="diffusion-scene" href="movies.html" aria-label="Favourite movie scenes">
-        <canvas class="diffusion-canvas" width="700" height="380"></canvas>
-        <span class="diffusion-caption"></span>
-      </a>
+      <div class="diffusion-wrap">
+        <a class="diffusion-scene" href="movies.html" aria-label="Favourite movie scenes">
+          <canvas class="diffusion-canvas" width="700" height="380"></canvas>
+          <span class="diffusion-caption"></span>
+        </a>
+        <button class="diffusion-next" type="button" aria-label="Next scene"><i class="fas fa-chevron-right"></i></button>
+      </div>
 
       <!-- Bio -->
       <section class="bio">
@@ -295,6 +298,7 @@
           { src: 'images/movie_scenes/big_lebowski.avif', title: 'The Big Lebowski (1998)' },
           { src: 'images/movie_scenes/heat.jpg', title: 'Heat (1995)' },
           { src: 'images/movie_scenes/tokyo-story.jpg', title: 'Tokyo Story (1953)' },
+          { src: 'images/movie_scenes/ida.jpeg', title: 'Ida (2013)' },
           { src: 'images/movie_scenes/my_own_private_idaho.jpeg', title: 'My Own Private Idaho (1991)' },
           { src: 'images/movie_scenes/satantango.jpg', title: 'Sátántangó (1994)' },
           { src: 'images/movie_scenes/stalker_2.jpg', title: 'Stalker (1979)' },
@@ -417,46 +421,58 @@
           }
         }
 
-        function animateScene(target) {
-          return new Promise((resolve) => {
-            const revealMs = 3200;
-            const holdMs = 2200;
-            const start = performance.now();
-            caption.classList.remove('show');
-            function tick(now) {
-              let p = (now - start) / revealMs;
-              if (p >= 1) {
-                renderClean(target);
-                caption.textContent = target.title;
-                caption.classList.add('show');
-                setTimeout(resolve, holdMs);
-                return;
-              }
-              renderStep(target, p);
-              requestAnimationFrame(tick);
+        const revealMs = 3200;
+        const holdMs = 2200;
+        const nextBtn = document.querySelector('.diffusion-next');
+        let runId = 0;
+        let rafId = 0;
+        let holdTimer = 0;
+
+        function showStatic(target) {
+          renderClean(target);
+          caption.textContent = target.title;
+          caption.classList.add('show');
+        }
+
+        // Starting a new run cancels whatever reveal or hold is in progress,
+        // so the next button can jump in at any point.
+        function play(target, onDone) {
+          const id = ++runId;
+          cancelAnimationFrame(rafId);
+          clearTimeout(holdTimer);
+          caption.classList.remove('show');
+          const start = performance.now();
+          function tick(now) {
+            if (id !== runId) return;
+            const p = Math.max(0, (now - start) / revealMs);
+            if (p >= 1) {
+              showStatic(target);
+              holdTimer = setTimeout(onDone, holdMs);
+              return;
             }
-            requestAnimationFrame(tick);
-          });
+            renderStep(target, p);
+            rafId = requestAnimationFrame(tick);
+          }
+          rafId = requestAnimationFrame(tick);
         }
 
         (async function run() {
           const loaded = (await Promise.all(scenes.map(loadScene))).filter(Boolean);
           if (!loaded.length) {
-            scene.style.display = 'none';
-            return;
-          }
-          if (prefersReduced) {
-            renderClean(loaded[0]);
-            caption.textContent = loaded[0].title;
-            caption.classList.add('show');
+            scene.closest('.diffusion-wrap').style.display = 'none';
             return;
           }
           let i = 0;
-          // eslint-disable-next-line no-constant-condition
-          while (true) {
-            await animateScene(loaded[i]);
+          function advance() {
             i = (i + 1) % loaded.length;
+            if (prefersReduced) showStatic(loaded[i]);
+            else play(loaded[i], advance);
           }
+          if (nextBtn) {
+            nextBtn.addEventListener('click', advance);
+          }
+          if (prefersReduced) showStatic(loaded[0]);
+          else play(loaded[0], advance);
         })();
       })();
 
