@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Rahul Chand — Stanford MS CS. Personal website, research, and projects." />
+    <meta name="author" content="Rahul Chand" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Open Graph (Facebook, iMessage, LinkedIn, WhatsApp, Slack, etc.) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rahul Chand" />
+    <meta property="og:title" content="Rahul Chand website" />
+    <meta property="og:description" content="Personal website of Rahul Chand, Stanford MS CS." />
+    <meta property="og:url" content="https://rahulschand.github.io/" />
+    <meta property="og:image" content="https://rahulschand.github.io/images/stanford.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Rahul Chand website" />
+    <meta name="twitter:description" content="Personal website of Rahul Chand, Stanford MS CS." />
+    <meta name="twitter:image" content="https://rahulschand.github.io/images/stanford.png" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="images/nicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/x-icon" href="images/nicons/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=EB+Garamond:ital@1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/style-3.css?v=23" />
+
+    <title>Rahul Chand</title>
+  </head>
+  <body>
+    <main class="container">
+
+      <!-- Header -->
+      <header class="header-section">
+        <div class="profile-row">
+          <img src="images/cat.jpg" class="profilepic" alt="Rahul Chand" />
+          <div class="header-info">
+            <h1 class="name">
+              <span class="text-tooltip">Rahul<span class="tooltip-text">Rahul is the name Buddha gave to his son (it also means silver)</span></span>
+              <span class="text-tooltip">Chand<span class="tooltip-text">Chand means "moon" in Sanskrit</span></span>
+            </h1>
+            <p class="name-hindi">राहुल चंद</p>
+            <nav class="social-links">
+              <a href="assets/RahulC_Stanford_GRAD_RESUME.pdf" target="_blank" data-tooltip="Resume"><i class="fas fa-file-alt"></i></a>
+              <a class="icon-only" href="mailto:rahulsc@cs.stanford.edu" data-tooltip="Email"><i class="fas fa-envelope"></i></a>
+              <a class="icon-only" href="https://github.com/rahulschand" target="_blank" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://scholar.google.com/citations?user=MwVowfAAAAAJ&hl=en" target="_blank" data-tooltip="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+              <a class="icon-only" href="https://www.linkedin.com/in/rahulschand/" target="_blank" data-tooltip="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="https://www.lesswrong.com/users/rahul-chand" target="_blank" data-tooltip="LessWrong"><i class="fas fa-book-open"></i></a>
+              <a href="movies.html" data-tooltip="Movies"><i class="fas fa-film"></i></a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <!-- Favourite movie scenes (diffusion reveal) -->
+      <div class="diffusion-wrap">
+        <a class="diffusion-scene" href="movies.html" aria-label="Favourite movie scenes">
+          <canvas class="diffusion-canvas" width="700" height="380"></canvas>
+          <span class="diffusion-caption"></span>
+        </a>
+        <button class="diffusion-next" type="button" aria-label="Next scene"><i class="fas fa-chevron-right"></i></button>
+      </div>
+
+      <!-- Bio -->
+      <section class="bio">
+        <p>
+          Hi, I am Rahul. I completed my master's at <span class="stanford">Stanford</span> 🌲. Most recently, I worked at Skild AI on their post-training team. Before that, I was at <a href="https://research.nvidia.com/labs/gear/" target="_blank">GEAR Lab</a> at NVIDIA Research, where I trained robot foundation models (<a href="https://research.nvidia.com/labs/gear/gr00t-n1_6/" target="_blank">GR00T N1.6</a>) and worked on offline RL. I was also an intern at NVIDIA's <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2" target="_blank">post-training Nemotron LLM team</a>, working on looped transformers, and contributed to <a href="https://github.com/NVIDIA-NeMo/RL" target="_blank">Nemo-RL</a> (async RL).
+        </p>
+        <p>
+          At <span class="stanford">Stanford</span> 🌲, I was part of Prof. Dorsa Sadigh's <a href="https://iliad.stanford.edu" target="_blank">ILIAD</a> lab, working on robotics data. Before that, I was a Research Fellow at Microsoft Research <i class="fab fa-microsoft" style="color: #00BCF2;"></i> on transformer compression and <a href="http://manikvarma.org/pubs/bengio19.pdf" target="_blank">extreme classification</a>. My current interests are robotics (and trying to find meaning in a post-singularity world).
+        </p>
+        <p>
+          At <span class="stanford">Stanford</span> 🌲, I was a Teaching Assistant for:
+        </p>
+        <ul class="ta-list">
+          <li><a href="https://cs153.stanford.edu" target="_blank"><strong>CS 153</strong></a> — Infra at Scale (with Anjey Midha and Michael Abbot)</li>
+          <li><a href="https://web.stanford.edu/class/cs234/" target="_blank" data-fallback="https://web.archive.org/web/20260411074854/http://web.stanford.edu/class/cs234/"><strong>CS 234</strong></a> — Reinforcement Learning (with Prof. Emma Brunskill)</li>
+          <li><a href="https://cs224r.stanford.edu" target="_blank" data-fallback="https://web.archive.org/web/20260822052456/https://cs224r.stanford.edu/"><strong>CS 224R</strong></a> — Deep RL (with Prof. Chelsea Finn)</li>
+        </ul>
+        <p>
+          In the <span class="hover-preview">future<img src="images/future_meme.jpg" alt="future meme" class="preview-image"></span>, I look forward to getting replaced by AGI and working as a <span class="hover-preview">Wallace Design Protein Farmer<img src="images/blade_runner.webp" alt="wallace design" class="preview-image-landscape"></span>.
+        </p>
+        <p>
+          In my previous life (most of which I have <span class="hover-preview">forgotten<img src="images/forgotten.png" alt="forgotten memory" class="preview-image-landscape"></span>), I completed my undergrad in CS at BITS and wanted to win India its first Oscar Award for Best International Film. For more details, check my <a href="assets/RahulC_Stanford_GRAD_RESUME.pdf" target="_blank">CV</a> or my <a href="movies.html">favourite movies of all time</a>.
+        </p>
+      </section>
+
+      <blockquote class="closing-quote" hidden>
+        <span class="quote-text">It was Gorky, Lenin or maybe Mayakovsky who said about the Russian revolution that the situation forced them to choose the one chance in a thousand. Because hope became infinitely greater if you took that chance than if you didn't take it.</span>
+        <cite class="closing-quote-source">— My Night at Maud's (1969)</cite>
+      </blockquote>
+
+      <!-- Publications -->
+      <section class="section">
+        <h2 class="section-title">Publications</h2>
+
+        <div class="pub-entry">
+          <div class="pub-text">
+            <span class="pub-title" style="color:#111; text-decoration:none;">How Many Demonstrations Does a VLA Need? On the Sample Efficiency of VLA Adaptation</span>
+            <p class="pub-venue">Under Review</p>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-text">
+            <a class="pub-title" href="https://research.nvidia.com/labs/gear/gr00t-n1_6/" target="_blank">GR00T N1.6: An Improved Foundation Model for Generalist Humanoid Robots</a>
+            <p class="pub-authors">GEAR Team</p>
+            <p class="pub-venue"><a href="https://research.nvidia.com/labs/gear/">NVIDIA Research</a> · 2025</p>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-text">
+            <a class="pub-title" href="https://arxiv.org/abs/2509.01657" target="_blank">Data Retrieval with Importance Weights for Few-Shot Imitation Learning</a>
+            <p class="pub-authors">Amber Xie, <span class="me">Rahul Chand</span>, Dorsa Sadigh, Joey Hejna</p>
+            <p class="pub-venue"><a href="http://corl.org">CoRL 2025</a> <span class="pub-badge">Oral</span> · Conference on Robot Learning</p>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-text">
+            <a class="pub-title" href="https://arxiv.org/abs/2602.16008" target="_blank">MAEB: Massive Audio Embedding Benchmark</a>
+            <p class="pub-authors">Adnan El Assadi, Isaac Chung, Chenghao Xiao, Roman Solomatin, Animesh Jha, <span class="me">Rahul Chand</span>, Silky Singh, &hellip; Niklas Muennighoff, Kenneth Enevoldsen</p>
+            <p class="pub-venue"><a href="https://arxiv.org/abs/2602.16008">NeurIPS 2026</a> · Evaluations and Datasets Track</p>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-text">
+            <a class="pub-title" href="https://iclr.cc/virtual/2024/poster/19401" target="_blank">Enhancing Tail Performance in Extreme Classifiers by Label Variance Reduction</a>
+            <p class="pub-authors">Anirudh Buvanesh*, <span class="me">Rahul Chand</span>*, Yashoteja Prabhu, Manish Gupta, Manik Verma <span class="equal-contrib">(* = Equal Contribution)</span></p>
+            <p class="pub-venue"><a href="https://iclr.cc/">ICLR 2024</a> · International Conference on Learning Representations</p>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-text">
+            <a class="pub-title" href="https://arxiv.org/abs/2312.13211.pdf" target="_blank">DSFormer: Effective Compression of Text-Transformers by Dense-Sparse Weight Factorization</a>
+            <p class="pub-authors"><span class="me">Rahul Chand</span>, Yashoteja Prabhu, Pratyush Kumar</p>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-text">
+            <a class="pub-title" href="https://arxiv.org/abs/2304.00306.pdf" target="_blank">CapsFlow: Optical Flow Estimation with Capsule Networks</a>
+            <p class="pub-authors"><span class="me">Rahul Chand</span>, Rajat Arora, Ram Prabhakar Venkatesh Babu</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Open Source -->
+      <section class="section">
+        <h2 class="section-title">Open Source</h2>
+
+        <div class="oss-entry">
+          <div class="oss-info">
+            <a class="oss-name" href="https://github.com/NVIDIA/Isaac-GR00T" target="_blank">Isaac-GR00T</a>
+            <span class="oss-stars">6000+ ⭐ · Contributor</span>
+          </div>
+          <p class="oss-desc">NVIDIA's open platform for humanoid robot learning — training, fine-tuning, and deploying GR00T foundation models.</p>
+        </div>
+
+        <div class="oss-entry">
+          <div class="oss-info">
+            <a class="oss-name" href="https://github.com/RahulSChand/gpu_poor" target="_blank">gpu_poor</a>
+            <span class="oss-stars">1400+ ⭐</span>
+          </div>
+          <p class="oss-desc">Tool to check VRAM and token/s requirements for any LLM on consumer hardware. Supports ggml, HuggingFace, bitsandbytes, QLoRA, and gradient checkpointing. Used 120k+ times by 20k+ users.</p>
+        </div>
+
+        <div class="oss-entry">
+          <div class="oss-info">
+            <a class="oss-name" href="https://github.com/RahulSChand/llama2.c-for-dummies" target="_blank">llama2.c-for-dummies</a>
+            <span class="oss-stars">200+ ⭐</span>
+          </div>
+          <p class="oss-desc">Starter tutorial for inference with LLaMA in C.</p>
+        </div>
+
+        <div class="oss-entry">
+          <div class="oss-info">
+            <a class="oss-name" href="https://github.com/NVIDIA-NeMo/RL" target="_blank">Nemo-RL</a>
+            <span class="oss-stars">1k+ ⭐ · Contributor</span>
+          </div>
+          <p class="oss-desc">NeMo RL is NVIDIA's open-source post-training library.</p>
+        </div>
+
+        <div class="oss-entry">
+          <div class="oss-info">
+            <a class="oss-name" href="https://github.com/NVIDIA-NeMo/gym" target="_blank">Nemo-Gym</a>
+            <span class="oss-stars">70+ ⭐ · Contributor</span>
+          </div>
+          <p class="oss-desc">NeMo Gym is a framework for building reinforcement learning environments to train LLMs.</p>
+        </div>
+      </section>
+
+      <!-- Affiliations -->
+      <section class="section affiliations">
+        <div class="affil-row">
+          <div class="affil-item">
+            <img src="images/stanford.png" alt="Stanford" />
+            <span>Stanford</span>
+          </div>
+          <div class="affil-item">
+            <img src="images/nvidia.png" alt="NVIDIA" />
+            <span>NVIDIA</span>
+          </div>
+          <div class="affil-item">
+            <img src="images/microsoft_research_logo.jpg" alt="Microsoft Research" />
+            <span>Microsoft Research</span>
+          </div>
+          <div class="affil-item">
+            <img src="images/iisc.jpg" alt="IISc" />
+            <span>IISc</span>
+          </div>
+          <div class="affil-item">
+            <img src="images/iirs.jpg" alt="IIRS" />
+            <span>IIRS</span>
+          </div>
+          <div class="affil-item">
+            <img src="images/bitspilani.png" alt="BITS Pilani" />
+            <span>BITS Pilani</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <script data-goatcounter="https://rahulschand.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+    <script>
+      document.querySelectorAll('.hover-preview').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          const isActive = el.classList.contains('active');
+          document.querySelectorAll('.hover-preview.active').forEach(other => other.classList.remove('active'));
+          if (!isActive) el.classList.add('active');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.hover-preview')) {
+          document.querySelectorAll('.hover-preview.active').forEach(el => el.classList.remove('active'));
+        }
+      });
+
+      async function resolveLinkUrl(primary, fallback) {
+        try {
+          const response = await fetch(primary, { method: 'HEAD', cache: 'no-store' });
+          if (response.ok) return primary;
+          if (response.status >= 400) return fallback;
+          return primary;
+        } catch {
+          try {
+            await fetch(primary, { method: 'HEAD', mode: 'no-cors', cache: 'no-store' });
+            return primary;
+          } catch {
+            return fallback;
+          }
+        }
+      }
+
+      document.querySelectorAll('a[data-fallback]').forEach(link => {
+        const primary = link.href;
+        const fallback = link.dataset.fallback;
+
+        resolveLinkUrl(primary, fallback).then(url => {
+          if (url === fallback) link.href = fallback;
+        });
+
+        link.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const url = await resolveLinkUrl(primary, fallback);
+          window.open(url, '_blank', 'noopener,noreferrer');
+        });
+      });
+
+      // ===== Diffusion scene reveal (landscape banner) =====
+      (function () {
+        const scene = document.querySelector('.diffusion-scene');
+        if (!scene) return;
+        const canvas = scene.querySelector('.diffusion-canvas');
+        const caption = scene.querySelector('.diffusion-caption');
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        const W = canvas.width;   // full-res target for a crisp final image
+        const H = canvas.height;
+
+        // Add your favourite movie scenes here. Drop the image files in
+        // images/movie_scenes/ and add a { src, title } line for each.
+        const scenes = [
+          { src: 'images/movie_scenes/stalker_1.jpg', title: 'Stalker (1979)' },
+          { src: 'images/movie_scenes/taxi_driver.avif', title: 'Taxi Driver (1976)' },
+          { src: 'images/movie_scenes/Persona.jpg', title: 'Persona (1966)' },
+          { src: 'images/movie_scenes/birdman.jpg', title: 'Birdman (2014)' },
+          { src: 'images/movie_scenes/mulholand_drive.png', title: 'Mulholland Drive (2001)' },
+          { src: 'images/movie_scenes/no_country_for_old_men.png', title: 'No Country for Old Men (2007)' },
+          { src: 'images/movie_scenes/chungking_express.jpg', title: 'Chungking Express (1994)' },
+          { src: 'images/movie_scenes/nostalghia.jpg', title: 'Nostalghia (1983)' },
+          { src: 'images/movie_scenes/big_lebowski.avif', title: 'The Big Lebowski (1998)' },
+          { src: 'images/movie_scenes/heat.jpg', title: 'Heat (1995)' },
+          { src: 'images/movie_scenes/tokyo-story.jpg', title: 'Tokyo Story (1953)' },
+          { src: 'images/movie_scenes/ida.jpeg', title: 'Ida (2013)' },
+          { src: 'images/movie_scenes/my_own_private_idaho.jpeg', title: 'My Own Private Idaho (1991)' },
+          { src: 'images/movie_scenes/satantango.jpg', title: 'Sátántangó (1994)' },
+          { src: 'images/movie_scenes/stalker_2.jpg', title: 'Stalker (1979)' },
+          { src: 'images/movie_scenes/inside_llewyn_davis.jpg', title: 'Inside Llewyn Davis (2013)' },
+          { src: 'images/movie_scenes/apoaclypse_now.jpg', title: 'Apocalypse Now (1979)' },
+          { src: 'images/movie_scenes/fargo.jpg', title: 'Fargo (1996)' },
+        ];
+
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Noise is computed at low resolution (cheap) then upscaled; the final
+        // clean frame is drawn at full resolution (crisp, not grainy).
+        // Keep this aspect ratio matched to the canvas (700x380).
+        const NW = 210;
+        const NH = 114;
+        const buf = document.createElement('canvas');
+        buf.width = NW;
+        buf.height = NH;
+        const bctx = buf.getContext('2d', { willReadFrequently: true });
+        const frame = bctx.createImageData(NW, NH);
+
+        // Number of blur levels, coarsest first. Each level halves resolution.
+        const LEVELS = 6;
+
+        // Cheap approx-Gaussian noise with unit standard deviation.
+        function gauss() {
+          return (Math.random() + Math.random() + Math.random() + Math.random() - 2) * 1.732;
+        }
+
+        function coverRect(iw, ih, w, h) {
+          const scale = Math.max(w / iw, h / ih);
+          const dw = iw * scale;
+          const dh = ih * scale;
+          return [(w - dw) / 2, (h - dh) / 2, dw, dh];
+        }
+
+        function loadScene(s) {
+          return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => {
+              try {
+                const base = document.createElement('canvas');
+                base.width = NW;
+                base.height = NH;
+                const [dx, dy, dw, dh] = coverRect(img.width, img.height, NW, NH);
+                base.getContext('2d').drawImage(img, dx, dy, dw, dh);
+
+                // Progressively halve to get blurrier versions, then scale each
+                // back up to NW x NH so they can be blended pixel by pixel.
+                const smalls = [base];
+                for (let k = 1; k < LEVELS; k++) {
+                  const prev = smalls[smalls.length - 1];
+                  const c = document.createElement('canvas');
+                  c.width = Math.max(1, Math.round(prev.width / 2));
+                  c.height = Math.max(1, Math.round(prev.height / 2));
+                  const cctx = c.getContext('2d');
+                  cctx.imageSmoothingEnabled = true;
+                  cctx.drawImage(prev, 0, 0, c.width, c.height);
+                  smalls.push(c);
+                }
+                const levels = smalls.reverse().map((c) => {
+                  bctx.imageSmoothingEnabled = true;
+                  bctx.clearRect(0, 0, NW, NH);
+                  bctx.drawImage(c, 0, 0, NW, NH);
+                  return bctx.getImageData(0, 0, NW, NH).data;
+                });
+                resolve(Object.assign({}, s, { levels: levels, img: img }));
+              } catch (e) {
+                resolve(null);
+              }
+            };
+            img.onerror = () => resolve(null);
+            img.src = s.src;
+          });
+        }
+
+        function renderClean(target) {
+          const [dx, dy, dw, dh] = coverRect(target.img.width, target.img.height, W, H);
+          ctx.imageSmoothingEnabled = true;
+          ctx.clearRect(0, 0, W, H);
+          ctx.drawImage(target.img, dx, dy, dw, dh);
+        }
+
+        // Coarse-to-fine, like a diffusion sampler: the blurry layout and colours
+        // show up early under heavy noise, then edges and fine detail sharpen in
+        // while the noise falls away.
+        function renderStep(target, p) {
+          const levels = target.levels;
+          const n = levels.length - 1;
+          const pos = Math.min(n, p * n * 1.15);
+          const lo = Math.floor(pos);
+          const hi = Math.min(n, lo + 1);
+          const mix = pos - lo;
+          const A = levels[lo];
+          const B = levels[hi];
+          const signal = Math.sqrt(p);
+          const sigma = Math.pow(1 - p, 0.8) * 85;
+          const f = frame.data;
+          for (let i = 0; i < f.length; i += 4) {
+            for (let c = 0; c < 3; c++) {
+              const k = i + c;
+              const s = A[k] + (B[k] - A[k]) * mix;
+              f[k] = 128 + signal * (s - 128) + gauss() * sigma;
+            }
+            f[i + 3] = 255;
+          }
+          bctx.putImageData(frame, 0, 0);
+          ctx.imageSmoothingEnabled = true;
+          ctx.drawImage(buf, 0, 0, W, H);
+
+          // Crossfade the crisp full-res image in over the last stretch so the
+          // low-res buffer resolves into sharpness instead of popping at the end.
+          if (p > 0.85) {
+            let a = (p - 0.85) / 0.15; // 0 -> 1
+            a = a * a * (3 - 2 * a);   // smoothstep
+            ctx.globalAlpha = a;
+            const [dx, dy, dw, dh] = coverRect(target.img.width, target.img.height, W, H);
+            ctx.drawImage(target.img, dx, dy, dw, dh);
+            ctx.globalAlpha = 1;
+          }
+        }
+
+        const revealMs = 3200;
+        const holdMs = 2200;
+        const nextBtn = document.querySelector('.diffusion-next');
+        let runId = 0;
+        let rafId = 0;
+        let holdTimer = 0;
+
+        function showStatic(target) {
+          renderClean(target);
+          caption.textContent = target.title;
+          caption.classList.add('show');
+        }
+
+        // Starting a new run cancels whatever reveal or hold is in progress,
+        // so the next button can jump in at any point.
+        function play(target, onDone) {
+          const id = ++runId;
+          cancelAnimationFrame(rafId);
+          clearTimeout(holdTimer);
+          caption.classList.remove('show');
+          const start = performance.now();
+          function tick(now) {
+            if (id !== runId) return;
+            const p = Math.max(0, (now - start) / revealMs);
+            if (p >= 1) {
+              showStatic(target);
+              holdTimer = setTimeout(onDone, holdMs);
+              return;
+            }
+            renderStep(target, p);
+            rafId = requestAnimationFrame(tick);
+          }
+          rafId = requestAnimationFrame(tick);
+        }
+
+        (async function run() {
+          const loaded = (await Promise.all(scenes.map(loadScene))).filter(Boolean);
+          if (!loaded.length) {
+            scene.closest('.diffusion-wrap').style.display = 'none';
+            return;
+          }
+          let i = 0;
+          function advance() {
+            i = (i + 1) % loaded.length;
+            if (prefersReduced) showStatic(loaded[i]);
+            else play(loaded[i], advance);
+          }
+          if (nextBtn) {
+            nextBtn.addEventListener('click', advance);
+          }
+          if (prefersReduced) showStatic(loaded[0]);
+          else play(loaded[0], advance);
+        })();
+      })();
+
+      // ===== Quote scramble reveal =====
+      (function () {
+        const ENABLE_QUOTE_SCRAMBLE = false;
+        if (!ENABLE_QUOTE_SCRAMBLE) return;
+        const el = document.querySelector('.quote-text');
+        if (!el) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const quote = el.closest('.closing-quote');
+        const finalText = el.textContent;
+        const chars = Array.from(finalText);
+        const glyphs = 'abcdefghijklmnopqrstuvwxyz';
+        const durationMs = 2200;
+        // Each character settles at its own time, loosely left to right.
+        const revealAt = chars.map((_, i) => (i / chars.length) * 0.35 + Math.random() * 0.65);
+
+        function scrambled(p) {
+          return chars.map((c, i) => {
+            if (c === ' ' || p >= revealAt[i]) return c;
+            return glyphs[Math.floor(Math.random() * glyphs.length)];
+          }).join('');
+        }
+
+        quote.style.minHeight = quote.offsetHeight + 'px';
+        el.textContent = scrambled(0);
+
+        function run() {
+          const start = performance.now();
+          const timer = setInterval(() => {
+            const p = (performance.now() - start) / durationMs;
+            if (p >= 1) {
+              clearInterval(timer);
+              el.textContent = finalText;
+              quote.style.minHeight = '';
+              return;
+            }
+            el.textContent = scrambled(p);
+          }, 45);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            observer.disconnect();
+            run();
+          }
+        }, { threshold: 0.4 });
+        observer.observe(quote);
+      })();
+
+    </script>
+  </body>
+</html>
