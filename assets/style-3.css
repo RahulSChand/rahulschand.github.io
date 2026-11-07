@@ -308,6 +308,11 @@ a:hover {
   font-weight: 600;
 }
 
+.emph {
+  font-weight: 700;
+  color: #000;
+}
+
 /* ===== Job banner ===== */
 .job-banner {
   display: inline-flex;
