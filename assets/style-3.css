@@ -371,9 +371,16 @@ a:hover {
   margin-bottom: 1px;
 }
 
-.ta-list strong {
-  font-weight: 600;
+.ta-list strong,
+.ta-course {
+  font-weight: 500;
   color: #000;
+}
+
+.pi-brand {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.02em;
 }
 
 /* ===== Sections ===== */
